@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Family {
+  id          String          @id @default(cuid())
+  name        String
+  address     String
+  phone       String
+  memberCount Int
+  createdAt   DateTime        @default(now())
+  deliveries  DailyDelivery[]
+}
+
+/// Calendar day in YYYY-MM-DD (local ops day)
+model Menu {
+  id        String   @id @default(cuid())
+  date      String   @unique
+  items     String   // JSON string array of dish names
+  createdAt DateTime @default(now())
+}
+
+model DailyDelivery {
+  id       String         @id @default(cuid())
+  familyId String
+  family   Family         @relation(fields: [familyId], references: [id], onDelete: Cascade)
+  date     String
+  status   DeliveryStatus @default(PENDING)
+
+  @@unique([familyId, date])
+}
+
+enum DeliveryStatus {
+  PENDING
+  DELIVERED
+  NOT_DELIVERED
+}
