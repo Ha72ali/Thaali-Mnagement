@@ -33,6 +33,35 @@ npm run dev
 
 ---
 
+## 🚀 Deployment
+
+### Vercel (Recommended)
+
+1. **One-Click Deploy**:
+   - Click the button below to deploy instantly
+   - Set up your PostgreSQL database
+   - Your app will be live in minutes!
+
+   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Ha72ali/Thaali-Mnagement)
+
+2. **Manual Deployment**:
+   ```bash
+   # Install Vercel CLI
+   npm install -g vercel
+
+   # Deploy
+   npm run vercel-deploy
+   ```
+
+3. **Database Setup**:
+   - Use Vercel Postgres (free tier available)
+   - Or any PostgreSQL provider (Neon, PlanetScale, etc.)
+   - Set `DATABASE_URL` environment variable
+
+📖 **[Complete Deployment Guide](VERCEL_DEPLOYMENT_GUIDE.md)**
+
+---
+
 ## ✨ Features
 
 ### 📊 Dashboard
