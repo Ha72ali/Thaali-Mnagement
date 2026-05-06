@@ -5,8 +5,11 @@
     }
   },
   "regions": ["fra1"],
-  "buildCommand": "prisma generate && next build",
+  "buildCommand": "npm run vercel-build",
   "installCommand": "npm install",
   "framework": "nextjs",
-  "outputDirectory": ".next"
+  "outputDirectory": ".next",
+  "env": {
+    "NODE_ENV": "production"
+  }
 }
