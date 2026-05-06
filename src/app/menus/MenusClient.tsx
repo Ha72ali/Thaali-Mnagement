@@ -61,8 +61,15 @@ export function MenusClient() {
         body: JSON.stringify({ date, items }),
       });
       if (!r.ok) {
-        const j = await r.json().catch(() => ({}));
-        throw new Error((j as { error?: string }).error ?? (await r.text()));
+        const bodyText = await r.text();
+        const json = (() => {
+          try {
+            return JSON.parse(bodyText);
+          } catch {
+            return {};
+          }
+        })();
+        throw new Error((json as { error?: string }).error ?? (bodyText || "Save failed"));
       }
       await load();
     } catch (err) {

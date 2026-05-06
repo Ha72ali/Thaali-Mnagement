@@ -52,7 +52,14 @@ export function DashboardClient() {
     : [];
 
   return (
-    <div className="space-y-6">
+    <div
+      className="space-y-6 rounded-2xl p-8 bg-cover bg-center bg-no-repeat min-h-screen"
+      style={{
+        backgroundImage: "url('/dashboard-bg.jpg')",
+        backgroundColor: "rgba(255, 255, 255, 0.3)",
+        backgroundBlendMode: "lighten",
+      }}
+    >
       <div className="flex flex-wrap items-end gap-4">
         <label className="flex flex-col gap-1 text-sm">
           <span className="font-medium text-stone-700 dark:text-stone-300">Day</span>

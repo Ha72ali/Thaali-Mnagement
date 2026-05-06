@@ -49,8 +49,15 @@ export function DeliveriesClient() {
         body: JSON.stringify({ familyId, date, status }),
       });
       if (!r.ok) {
-        const j = await r.json().catch(() => ({}));
-        throw new Error((j as { error?: string }).error ?? (await r.text()));
+        const bodyText = await r.text();
+        const json = (() => {
+          try {
+            return JSON.parse(bodyText);
+          } catch {
+            return {};
+          }
+        })();
+        throw new Error((json as { error?: string }).error ?? (bodyText || "Update failed"));
       }
       await load();
     } catch (err) {
